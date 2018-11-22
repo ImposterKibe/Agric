@@ -18,6 +18,23 @@ consumes:
 produces:
   - application/json
 paths:
+  /watson:
+    x-swagger-router-controller: watson_assistant
+    get:
+      description: begins chat with Watson assistant
+      # used as the method name of the controller
+      operationId: startChat
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"     
   /login:
     x-swagger-router-controller: users
     post:
