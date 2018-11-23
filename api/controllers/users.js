@@ -5,7 +5,7 @@ const {
     createUser,
     findUserById
 } 
-= require('../helpers/users_helper')
+= require('../helpers/users')
 
 const addUser = (req,res)=>{
     

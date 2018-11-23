@@ -19,6 +19,7 @@ function processResponse (err,response){
 if (response.intents.length > 0) {
     console.log('Detected intent: #' + response.intents[0].intent);
   }
+//if a response was detected
 if (response.output.text.length != 0) {
     console.log(response.output.text[0]);
 }
