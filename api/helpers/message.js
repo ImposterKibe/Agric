@@ -2,21 +2,19 @@ require('dotenv').config()
 // We need this to build our post string
 const querystring = require('querystring');
 const https       = require('https');
+const axios = require('axios')
+const AfricasTalking = require('africastalking')(real_options)
 
-const options = {
+// Your login credentials
+const real_options = {
     userName:process.env.AFRICAS_TALKING_USERNAME,
     apikey: process.env.AFRICAS_TALKING_API_KEY
 }
-const AfricasTalking = require('africastalking')(options)
-// Your login credentials
-
-const axios = require('axios')
-
-const recieveMessage = async() =>{
-    
-
+const sandbox_options = {
+    userName: process.env.AFRICAS_SANDBOX_USERNAME,
+    apiKey: process.env.AFRICAS_SANDBOX_API_KEY
 }
- 
+
 const sendMessage= () =>{
     const to = '+254706229743'   
     const message = "Hi, Have a safe journey today";
@@ -40,12 +38,12 @@ const sendMessage= () =>{
                            'Content-Type' : 'application/x-www-form-urlencoded',
                             'Content-Length': post_data.length,
                             'Accept': 'application/json',
-                            'apikey': apikey
+                            'apikey': sandbox_options.apikey
                         }
                     };
 
 
-
+    
     const post_req = https.request(post_options, (res)=> {
         res.setEncoding('utf8')
         res.on('data', (chunk) => {
@@ -67,7 +65,7 @@ const sendMessage= () =>{
                 })
             })
             
-            // Add post parameters to the http request
+            // Add post parameters to the http request`
             post_req.write(post_data)
             
             post_req.end()

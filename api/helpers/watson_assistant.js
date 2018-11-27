@@ -35,6 +35,9 @@ const newMessageFromUser = prompt.get('user_input', (err,result)=>{
   })
 }
 
+const recieve_message=(text) =>{
+    
+}
 module.exports = {
     startConvo,
     processResponse

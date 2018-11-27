@@ -14,6 +14,8 @@ schemes:
 # format of bodies a client can send (Content-Type)
 consumes:
   - application/json
+  - application/x-www-form-urlencoded
+
 # format of the responses to the client (Accepts)
 produces:
   - application/json
@@ -34,7 +36,42 @@ paths:
         default:
           description: Error
           schema:
+            $ref: "#/definitions/ErrorResponse"   
+    post:
+      summary: message from user
+      # used as the method name of the controller
+      operationId: receiveMessage
+      parameters:
+        - in: body
+          name: textDetails
+          schema:
+            type: object
+            properties:
+              text:
+                type: string
+              date:
+                type: string
+              id:
+                type: string
+              to:
+                type: string
+              from:
+                type: string
+              linkId:
+                type: string
+          
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/TextDetails"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
             $ref: "#/definitions/ErrorResponse"     
+
   /login:
     x-swagger-router-controller: users
     post:
@@ -184,6 +221,8 @@ paths:
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
+
+
 definitions:
   SuccessResponse:
     required:
@@ -208,3 +247,22 @@ definitions:
         type: integer
       password:
         type: string
+        
+  TextDetails:
+    required:
+      - text
+    type: object
+    properties:
+      text:
+        type: string
+      date:
+        type: string
+      id:
+        type: string
+      to:
+        type: string
+      from:
+        type: string
+      linkId:
+        type: string
+      

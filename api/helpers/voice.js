@@ -6,7 +6,7 @@ const options = {
 const AfricasTalking = require('africastalking')(options)
 const voice = AfricasTalking.VOICE
 
-const call =(req)=>{ 
+const make_call =(req)=>{ 
     voice.call({
         callFrom: process.env.VIRTUAL_PHONE_NUMBER,
         callTo: '+254726123456'
@@ -24,4 +24,9 @@ const callCenter = (req)=>{
     const text = 'Thank you for calling'
     const response = '<?xml version="1.0>" encoding="UTF-8"?><Response><Say>' +text + 
      '</Say><Dial phoneNumbers="+2547062297423" ringbackTone="" record="false" sequential="true"/></Response>'
+
+     return response
+}
+module.exports = {
+    make_call,callCenter
 }

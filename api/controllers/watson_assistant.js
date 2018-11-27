@@ -14,12 +14,16 @@ const startChat = (req,res)=>{
 //     res.status(200).send({message})
 // }
 
-// const receiveMessage = async (req,res)=>{
-//     userMessage = await req.swagger.params.Message
-//     console.log(userMessage)
-//     const message= util.format('Success')
-//     res.status(200).send({message})
-// }
+const receiveMessage = (req,res)=>{
+    try{
+    const {to,from,id,text,date} = req.swagger.params.textDetails.value
+    //console.log(text)
+    //res.status(200).send({text})
+    }catch(err){
+      console.log(err)  
+    }
+}
 module.exports={
-    startChat
+    startChat,
+    receiveMessage
 }
