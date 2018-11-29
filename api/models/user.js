@@ -1,4 +1,4 @@
-    const Sequelize = require('sequelize')
+const Sequelize = require('sequelize')
 
 const sequelize = new Sequelize ('mysql://root:@localhost:3306/firstdb')
 
@@ -28,19 +28,7 @@ const User = sequelize.define('User',{
     fullName: {
         type: Sequelize.STRING,
         field: 'full_name'
-    },
-    createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        field: 'created_at'
-    },
-    updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        field: 'updated_at'
-}
-
-
+    }
 })
 
 module.exports = User

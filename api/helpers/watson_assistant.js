@@ -1,6 +1,42 @@
 const prompt = require('prompt')
+const Message = require('../models/message');
 const {assistant,
     workspace_id} = require('../../config/credentials')
+
+    'use strict';
+require ('dotenv').config
+
+
+const storeMessage= async (obj)=>{
+    try{
+    const newMessage = await Message.create({
+                text:obj.text,
+                from:obj.from,
+                date:obj.date,
+                id:obj.id,
+                linkId:obj.linkId,
+                to:obj.to
+        })  }catch(err){
+            console.log(err)
+        }
+}    
+const getMessageById = async (id) =>{
+    const messageDetails = await Message.findAll({
+        where:{id}
+    })
+    //console.log(userDetails)
+    return messageDetails
+}
+const getAllMessages = async ()=>{
+    const messageList = await Message.findAll({
+        raw:true
+    }).catch(err=>{
+        res.status(500).json({
+            error:err
+        })
+    })
+    return messageList
+}
 
 const startConvo = async () =>{
     const conv = await assistant.message({
@@ -35,10 +71,12 @@ const newMessageFromUser = prompt.get('user_input', (err,result)=>{
   })
 }
 
-const recieve_message=(text) =>{
-    
-}
+
 module.exports = {
     startConvo,
-    processResponse
+    processResponse,
+    storeMessage,
+    getAllMessages,
+    getMessageById
 }
+
