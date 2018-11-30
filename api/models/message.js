@@ -7,7 +7,6 @@ const Message = sequelize.define('Message',{
         type:Sequelize.STRING,
         primaryKey:true,
         field: 'id'
-
     },
     to: {
         type:Sequelize.STRING,

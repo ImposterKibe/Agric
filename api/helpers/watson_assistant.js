@@ -16,7 +16,16 @@ const storeMessage= async (obj)=>{
                 id:obj.id,
                 linkId:obj.linkId,
                 to:obj.to
-        })  }catch(err){
+        })
+        // getMessageById(obj.id).then(result=>{
+        //     console.log(result.text)
+        //     startConvo()
+            assistant.message({
+                workspace_id,
+                context : response.context,
+                input: { text: result.text}
+                }, processResponse)
+     }catch(err){
             console.log(err)
         }
 }    
@@ -61,15 +70,15 @@ if (response.output.text.length != 0) {
 }
 
 // Prompt for the next round of input.
-prompt.start()
-const newMessageFromUser = prompt.get('user_input', (err,result)=>{
-    assistant.message({
-      workspace_id,
-      context : response.context,
-      input: { text: result.user_input }
-      }, processResponse)
-  })
-}
+//prompt.start()
+// const newMessageFromUser = prompt.get('user_input', (err,result)=>{
+//     assistant.message({
+//       workspace_id,
+//       context : response.context,
+//       input: { text: result.user_input }
+//       }, processResponse)
+//   })
+ }
 
 
 module.exports = {

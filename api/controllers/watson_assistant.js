@@ -7,12 +7,12 @@ const startChat = (req,res)=>{
     res.status(200).send({message})
 }
 
-// const respond = (req,res)=>{
-//     const text= req.swagger.params.text.value
-//     assistant.getResponse(text)
-//     const message= util.format('Success')
-//     res.status(200).send({message})
-// }
+const respond = (req,res)=>{
+    const text= req.swagger.params.text.value
+    assistant.getResponse(text)
+    const message= util.format('Success')
+    res.status(200).send({message})
+}
 
 const receiveMessage = (req,res)=>{
     try{
